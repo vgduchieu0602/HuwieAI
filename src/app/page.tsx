@@ -1,13 +1,8 @@
-import { Button } from "@/components/ui/button";
+import prisma from "@/lib/prisma";
 
-export default function Home() {
-  return (
-    <>
-      <main>
-        <h1 className="font-bold text-rose-500">Welcome to My App</h1>
-        <p>This is a simple Next.js app.</p>
-        <Button>Click me</Button>
-      </main>
-    </>
-  );
-}
+const Page = async () => {
+  const user = await prisma.user.findMany();
+  return <div>{JSON.stringify(user, null, 2)}</div>;
+};
+
+export default Page;
